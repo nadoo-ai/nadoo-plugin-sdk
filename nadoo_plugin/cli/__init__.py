@@ -1,0 +1,3 @@
+"""
+Nadoo Plugin CLI
+"""

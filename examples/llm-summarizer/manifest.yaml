@@ -1,0 +1,94 @@
+name: llm-summarizer
+version: 1.0.0
+display_name: LLM Summarizer
+author: Nadoo Team
+email: support@nadoo.ai
+description: |
+  Advanced text summarization and analysis plugin using LLM integration.
+
+  Features:
+  - Multi-style text summarization (short, medium, long)
+  - Keyword and concept extraction
+  - Question answering with context
+  - Knowledge base integration for enhanced Q&A
+  - Batch processing support
+  - Intelligent caching for performance
+
+  Perfect for content analysis, document processing, and knowledge extraction workflows.
+
+sdk_version: "^0.1.0"
+
+category: ai
+tags:
+  - llm
+  - summarization
+  - text-analysis
+  - nlp
+  - question-answering
+
+icon: 📝
+
+permissions:
+  - llm_access      # Required for all tools
+  - storage         # Required for caching
+  - knowledge_access  # Optional, for answer_question tool
+
+execution_strategy: restricted_python
+execution_timeout: 120  # Longer timeout for batch operations
+
+tools:
+  - name: summarize
+    display_name: Summarize Text
+    description: Generate concise summaries with customizable length and style
+
+  - name: extract_keywords
+    display_name: Extract Keywords
+    description: Identify key terms and concepts from text
+
+  - name: answer_question
+    display_name: Answer Question
+    description: Answer questions based on provided context with optional knowledge base integration
+
+  - name: batch_summarize
+    display_name: Batch Summarize
+    description: Efficiently summarize multiple texts in a single operation
+
+configuration_schema:
+  type: object
+  properties:
+    default_summary_length:
+      type: string
+      description: Default length for summaries
+      enum:
+        - short
+        - medium
+        - long
+      default: medium
+
+    default_summary_style:
+      type: string
+      description: Default style for summaries
+      enum:
+        - informative
+        - technical
+        - casual
+      default: informative
+
+    cache_enabled:
+      type: boolean
+      description: Enable caching of summaries
+      default: true
+
+    cache_ttl:
+      type: number
+      description: Cache time-to-live in seconds
+      default: 3600
+      minimum: 60
+      maximum: 86400
+
+    max_batch_size:
+      type: number
+      description: Maximum texts per batch operation
+      default: 20
+      minimum: 1
+      maximum: 50

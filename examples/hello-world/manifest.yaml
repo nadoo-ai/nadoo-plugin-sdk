@@ -1,0 +1,57 @@
+name: hello-world
+version: 1.0.0
+display_name: Hello World Plugin
+author: Nadoo Team
+email: support@nadoo.ai
+description: |
+  Simple example plugin demonstrating basic Nadoo plugin functionality.
+
+  Features:
+  - Multi-language greetings
+  - Text transformation (echo)
+  - Basic arithmetic operations
+
+  This plugin is perfect for learning how to create Nadoo plugins.
+
+sdk_version: "^0.1.0"
+entry_point: main.py
+
+category: examples
+tags:
+  - example
+  - tutorial
+  - beginner
+
+icon: 👋
+
+permissions:
+  - storage  # For demonstration purposes
+
+execution_strategy: restricted_python
+execution_timeout: 30
+
+tools:
+  - name: greet
+    display_name: Greet User
+    description: Generate a greeting message in multiple languages
+
+  - name: echo
+    display_name: Echo Text
+    description: Echo back text with optional transformations
+
+  - name: add_numbers
+    display_name: Add Numbers
+    description: Add two numbers together
+
+configuration_schema:
+  type: object
+  properties:
+    default_language:
+      type: string
+      description: Default language for greetings
+      enum:
+        - english
+        - spanish
+        - french
+        - korean
+      default: english
